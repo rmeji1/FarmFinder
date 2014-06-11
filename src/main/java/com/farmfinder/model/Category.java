@@ -1,6 +1,7 @@
 package com.farmfinder.model;
 
 import java.util.ArrayList;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
@@ -27,6 +28,7 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@JsonIgnore
 	public ArrayList<String> getFarmID() {
 		return FarmID;
 	}

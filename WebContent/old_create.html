@@ -8,9 +8,19 @@
 base_url="/rest/farms/";
 meta_url="/rest/metadata/";
 $(document).ready(function(){
-    $.getJSON(meta_url+"product",function(data){
+    $.getJSON(meta_url+"farm",function(data){
     		$.each(data, function(key, value){
     			$("div.book_div").append("<br/>Please enter " + key + ":"+"<input type='text' name='"+key+"'"+">");
+    		});
+    });
+    $.getJSON(meta_url+"product",function(data){
+    		$.each(data, function(key, value){
+    			$("div.product_div").append("<br/>Please enter " + key + ":"+"<input type='text' name='"+key+"'"+">");
+    		});
+    });
+    $.getJSON(meta_url+"categories",function(data){
+    		$.each(data, function(key, value){
+    			$("div.category").append("<br/>Please enter " + key + ":"+"<input type='text' name='"+key+"'"+">");
     		});
     });
     $.fn.serializeObject = function()
@@ -56,10 +66,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1 style="text-align:center;">Add your Farm!</h1>
-<form id="book_form" method="POST">
-<div class="book_div"></div>
-
+	<h1 style="text-align:center;">Add your Farm!</h1>
+	<form id="book_form" method="POST">
+		<div class="book_div"></div>
+		<div class="product_div"></div>
+		<div class="categories"></div>
 <input type="Submit">
 </form>
 </body>

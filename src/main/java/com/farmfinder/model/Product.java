@@ -16,8 +16,8 @@ public class Product {
 	private Category category ;
 	
 	/*******************Setters and Getters***********************/
-	
-	@JsonIgnore public String getFarmID() {
+	@JsonIgnore
+	public String getFarmID() {
 		return FarmID;
 	}
 	public void setFarmID(String farmID) {

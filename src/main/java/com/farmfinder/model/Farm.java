@@ -15,7 +15,7 @@ import com.farmfinder.model.Product ;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Farm {
-	@JsonIgnore private String id ;
+	private String id ;
 	private String name ;
 	private String pass ;
 	private String street ;
@@ -24,10 +24,10 @@ public class Farm {
 	private String zip ;
 	private String phoneNum ;
 	private String email ;
-	@JsonIgnore private ArrayList<Product> product ; 
+	private ArrayList<Product> product ; 
 	
 	/*******************Setters and Getters***********************/
-	
+	@JsonIgnore
 	public String getId() {
 		return id;
 	}
@@ -37,6 +37,7 @@ public class Farm {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@JsonIgnore
 	public ArrayList<Product> getProduct() {
 		return product;
 	}
