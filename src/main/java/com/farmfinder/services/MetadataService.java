@@ -17,9 +17,15 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.data.annotation.Id;
 
 import com.farmfinder.model.* ;
+import com.farmfinder.commands.CategoryRepo;
 import com.farmfinder.commands.MetadataRepo ;
+import com.farmfinder.config.MongoConfig;
 import com.farmfinder.metadata.Metadata ;
+
 import java.lang.reflect.Field ;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @Path("/metadata")
 public class MetadataService {
@@ -30,23 +36,58 @@ public class MetadataService {
 	@Path("/create/farm/metadata")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createFarmMetadata(){
-		/*@Id private String id ;
-			private String name ;
-			private String pass ;
-			private String street ;
-			private String city ;
-			private String state ;
-			private String zip ;
-			private String phoneNum ;
-			private String email ;
-			private ArrayList<Product> product ; */
-		
+		/*Create metadata for farm class using metadata class*/ 
 		Metadata meta = new Metadata(Farm.class) ;
-
-		
-		
+		/*Get repo from application context and store the generic metadata for farm. 
+		 * Note can edit by getting the ArrayList<HashMap> if needed.*/
+		try{
+			ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
+			MetadataRepo repo = (MetadataRepo) ctx.getBean(MetadataRepo.class) ;
+			repo.save(meta) ;
+			return Response.status(201).entity(meta).build() ;
+		}catch(Exception e){
+			e.printStackTrace() ;
+			return Response.status(500).build() ;
+		}
 	}
 	
+	@PUT
+	@Path("/create/category/metadata")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createCategoryMetadata(){
+		/*Create metadata for Category class using metadata class*/ 
+		Metadata meta = new Metadata(Category.class) ;
+		/*Get repo from application context and store the generic metadata for farm. 
+		 * Note can edit by getting the ArrayList<HashMap> if needed.*/
+		try{
+			ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
+			MetadataRepo repo = (MetadataRepo) ctx.getBean(MetadataRepo.class) ;
+			repo.save(meta) ;
+			return Response.status(201).entity(meta).build() ;
+		}catch(Exception e){
+			e.printStackTrace() ;
+			return Response.status(500).build() ;
+		}
+	}
+	
+	@PUT
+	@Path("/create/product/metadata")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createProductMetadata(){
+		/*Create metadata for Product class using metadata class*/ 
+		Metadata meta = new Metadata(Product.class) ;
+		/*Get repo from application context and store the generic metadata for farm. 
+		 * Note can edit by getting the ArrayList<HashMap> if needed.*/
+		try{
+			ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
+			MetadataRepo repo = (MetadataRepo) ctx.getBean(MetadataRepo.class) ;
+			repo.save(meta) ;
+			return Response.status(201).entity(meta).build() ;
+		}catch(Exception e){
+			e.printStackTrace() ;
+			return Response.status(500).build() ;
+		}
+	}
 	@GET
 	@Path("/farm")
 	@Produces(MediaType.APPLICATION_JSON)
