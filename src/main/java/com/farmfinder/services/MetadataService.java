@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -32,8 +33,8 @@ public class MetadataService {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	
-	@PUT
-	@Path("/create/farm/metadata")
+	@POST
+	@Path("/create/farm")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createFarmMetadata(){
 		/*Create metadata for farm class using metadata class*/ 
@@ -51,8 +52,8 @@ public class MetadataService {
 		}
 	}
 	
-	@PUT
-	@Path("/create/category/metadata")
+	@POST
+	@Path("/create/category")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCategoryMetadata(){
 		/*Create metadata for Category class using metadata class*/ 
@@ -70,8 +71,8 @@ public class MetadataService {
 		}
 	}
 	
-	@PUT
-	@Path("/create/product/metadata")
+	@POST
+	@Path("/create/product")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createProductMetadata(){
 		/*Create metadata for Product class using metadata class*/ 

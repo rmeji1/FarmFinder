@@ -22,7 +22,7 @@ public class Metadata {
 		this.title = title ;
 	}
 	public Metadata(Class obj){
-		this.title = obj.getName() ;
+		this.title = obj.getSimpleName() ;
 		System.out.println(obj.getName()) ;
 		getAttributes(obj) ;
 	}
