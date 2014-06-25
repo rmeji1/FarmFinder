@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.springframework.data.annotation.Id;
 
 import com.farmfinder.model.Product ;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Farm {
-	private String id ;
+	@Id private String id ;
 	private String name ;
 	private String pass ;
 	private String street ;

@@ -2,20 +2,50 @@
 package com.farmfinder.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.data.annotation.Id;
+
 import com.farmfinder.model.* ;
+import com.farmfinder.commands.MetadataRepo ;
+import com.farmfinder.metadata.Metadata ;
+import java.lang.reflect.Field ;
 
 @Path("/metadata")
 public class MetadataService {
 	ObjectMapper mapper = new ObjectMapper();
+	
+	
+	@PUT
+	@Path("/create/farm/metadata")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createFarmMetadata(){
+		/*@Id private String id ;
+			private String name ;
+			private String pass ;
+			private String street ;
+			private String city ;
+			private String state ;
+			private String zip ;
+			private String phoneNum ;
+			private String email ;
+			private ArrayList<Product> product ; */
+		
+		Metadata meta = new Metadata(Farm.class) ;
+
+		
+		
+	}
 	
 	@GET
 	@Path("/farm")
