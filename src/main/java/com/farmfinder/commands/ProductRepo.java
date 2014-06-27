@@ -2,8 +2,7 @@ package com.farmfinder.commands;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.farmfinder.metadata.Metadata;
-import com.farmfinder.model.Category;
+import com.farmfinder.model.Product;
 
 /* Uses MongoRepository
  * Avail Methods by default: 
@@ -19,6 +18,6 @@ import com.farmfinder.model.Category;
  * save(S entity) ;
 */
 
-public interface MetadataRepo extends MongoRepository<Metadata, String> {
-	public Metadata findByTitle(String title) ;
+public interface ProductRepo extends MongoRepository<Product, String> {
+
 }

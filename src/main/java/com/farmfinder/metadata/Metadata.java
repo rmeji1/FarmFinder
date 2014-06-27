@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.farmfinder.model.Farm;
+import com.farmfinder.model.Product;
 
 /*
  * This class will be used to add metadata info about 
@@ -65,7 +66,7 @@ public class Metadata {
 	}
 	
 	public static void main(String[] args){
-		Metadata meta = new Metadata(Farm.class) ;
+		Metadata meta = new Metadata(Product.class) ;
 		System.out.println(meta.getAttributes().toString()) ;
 	}
 }

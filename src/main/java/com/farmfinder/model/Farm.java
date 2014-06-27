@@ -6,10 +6,10 @@ package com.farmfinder.model;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.springframework.data.annotation.Id;
 
 import com.farmfinder.model.Product ;
@@ -25,6 +25,7 @@ public class Farm {
 	private String zip ;
 	private String phoneNum ;
 	private String email ;
+	private HashMap<String,String> roles ;
 	private ArrayList<Product> product ; 
 	
 	/*******************Setters and Getters***********************/
@@ -90,5 +91,12 @@ public class Farm {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public HashMap<String,String>getRoles() {
+		return roles;
+	}
+	public void setRoles(HashMap<String,String> roles) {
+		this.roles = roles;
+	}
+
 	
 }

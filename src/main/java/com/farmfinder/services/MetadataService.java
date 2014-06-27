@@ -58,7 +58,7 @@ public class MetadataService {
 	public Response createCategoryMetadata(){
 		/*Create metadata for Category class using metadata class*/ 
 		Metadata meta = new Metadata(Category.class) ;
-		/*Get repo from application context and store the generic metadata for farm. 
+		/*Get repo from application context and store the generic metadata for category. 
 		 * Note can edit by getting the ArrayList<HashMap> if needed.*/
 		try{
 			ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
@@ -77,7 +77,7 @@ public class MetadataService {
 	public Response createProductMetadata(){
 		/*Create metadata for Product class using metadata class*/ 
 		Metadata meta = new Metadata(Product.class) ;
-		/*Get repo from application context and store the generic metadata for farm. 
+		/*Get repo from application context and store the generic metadata for product. 
 		 * Note can edit by getting the ArrayList<HashMap> if needed.*/
 		try{
 			ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
@@ -89,24 +89,23 @@ public class MetadataService {
 			return Response.status(500).build() ;
 		}
 	}
+	
+	
 	@GET
 	@Path("/farm")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getFarmMetadata() {
-		Farm farm = new Farm();
-		String farmJSON;
-		try {
-			/*returns json object of a book */
-			farmJSON = mapper.writeValueAsString(farm);
-			return Response.status(200).entity(farmJSON).build();
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		/*Get repo from application context and get metadata for farm. */
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
+		MetadataRepo repo = (MetadataRepo) ctx.getBean(MetadataRepo.class) ;
+		try{
+			Metadata meta = repo.findByTitle("Farm") ;
+			return Response.status(200).entity(meta).build();
 		}
-		return Response.status(500).build();
+		catch(Exception e){
+			e.printStackTrace() ;
+			return Response.status(500).build();
+		}
 	}
 
 	@GET

@@ -1,6 +1,7 @@
 package com.farmfinder.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.farmfinder.model.Category ;
 
@@ -9,11 +10,12 @@ import com.farmfinder.model.Category ;
  * 
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 	private String FarmID ;
 	private String name ;
 	private double price ;
-	private Category category ;
+	private String category_id ;
 	
 	/*******************Setters and Getters***********************/
 	@JsonIgnore
@@ -35,11 +37,11 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Category getCategory() {
-		return category;
+	public String getCategory() {
+		return category_id;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategory(String category) {
+		this.category_id = category;
 	}
 	
 	

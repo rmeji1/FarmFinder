@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
+			//Example of how to use the metadata service.
+			metadata = "/rest/metadata"
+			$(document).ready(function(){
+				$.getJSON(metadata+"/product", function(data){
+				
+					console.log(data);
+					// Get the json inside data
+					$.each(data, function(key, value){
+						console.log(key);
+						$("#tbl_product").append("<tr><td>"+key+"</td><td><input type='text' name='"+key+"'/></td></tr>");
+					});
+					
+				}) ; 
+			
+			
+		//-----------------------------------------------------
+		// Submit farm form data
+		$('#frm_add_prd').submit(function(){
+		 	console.log($('#frm_add_prd').serializeObject()); // Create json
+		 	postData($('#frm_add_prd').serializeObject()); // Submit to rest service
+		 	return false;
+		});
+		
+		//-----------------------------------------------------
+		// Creates json for the add product form
+		$.fn.serializeObject = function()
+	    {
+	       var o = {};
+	       var a = this.serializeArray();
+	       $.each(a, function() {
+	           if (o[this.name]) {
+	               if (!o[this.name].push) {
+	                   o[this.name] = [o[this.name]];
+	               }
+	               o[this.name].push(this.value || '');
+	           } else {
+	               o[this.name] = this.value || '';
+	           }
+	       });
+	       return o;
+	    };
+	    
+	  //-----------------------------------------------------
+		// Perform post to add a product
+	    function postData(data){
+	        $.ajax({
+	                type: "POST",
+	                url: "/rest/farmfinder/product",
+	                data: JSON.stringify(data),
+	                contentType: "application/json; charset=utf-8",
+	                crossDomain: true,
+	                dataType: "json",
+	                success: function (data, status, jqXHR) {
+	                    alert("success");
+	                    // Redirect to profile page, if we sucessed to create new profile
+	                    //window.location.href = "/path/to/thankyoupage";
+	                },
+	                error: function (jqXHR, status) {
+	                    console.log(jqXHR);
+	                    alert('failed, please check console for errors');
+	                }
+	             });
+	       		}
+	      })
+		</script>
+		<title>Add a product example</title>
+	</head>
+
+	<body>
+		<form id="frm_add_prd">
+			<table id="tbl_product">
+			</table>
+			<input type="Submit">
+		</form>
+	</body>
+</html>
+	

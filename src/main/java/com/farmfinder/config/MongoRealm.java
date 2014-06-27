@@ -19,10 +19,9 @@ public class MongoRealm extends RealmBase {
 
 	private PropertiesLookup lookup = new PropertiesLookup() ;
 
+    protected String database = "farmfinder" ;
 
-    protected String database = "springtest" ;
-
-    protected String userCollection = "user";
+    protected String userCollection = "farm";
 
     protected String usernameField = "email";
 
@@ -173,7 +172,7 @@ public class MongoRealm extends RealmBase {
         }
         DB db = mongoClient.getDB(getDatabase());
        
-        if ( db.authenticate("rmeji1","newaccount".toCharArray()) ) {
+        if ( db.authenticate("admin","admin".toCharArray()) ) {
         	return db ;
         }else {
         	System.out.println("Could not authenticate user") ;
@@ -191,7 +190,7 @@ public class MongoRealm extends RealmBase {
         try {
 
             DB db = openMongoDB();
-            DBCollection userCol = db.getCollection("user");
+            DBCollection userCol = db.getCollection("farm");
             BasicDBObject query = new BasicDBObject(usernameField, username);
             DBObject obj = userCol.findOne(query);
 

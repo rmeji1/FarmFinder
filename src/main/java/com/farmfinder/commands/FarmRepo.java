@@ -1,9 +1,10 @@
 package com.farmfinder.commands;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.farmfinder.metadata.Metadata;
-import com.farmfinder.model.Category;
+import com.farmfinder.model.Farm;
 
 /* Uses MongoRepository
  * Avail Methods by default: 
@@ -19,6 +20,6 @@ import com.farmfinder.model.Category;
  * save(S entity) ;
 */
 
-public interface MetadataRepo extends MongoRepository<Metadata, String> {
-	public Metadata findByTitle(String title) ;
+public interface FarmRepo extends MongoRepository<Farm, String> {
+	List<Farm> findByState( String state ) ;
 }
